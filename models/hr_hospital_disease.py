@@ -16,10 +16,17 @@ class HospitalDisease(models.Model):
     description = fields.Text(string='Description')
     parent_path = fields.Char(index=True)
 
+    is_group = fields.Boolean(
+        string='Is Group',
+        default=False,
+        help='If set, this record will be considered a category for other diseases',
+    )
+
     parent_id = fields.Many2one(
         comodel_name='hr.hospital.disease',
         string='Parent Disease',
         ondelete='cascade',
+        domain=[('is_group', '=', True)],
         index=True,
     )
 

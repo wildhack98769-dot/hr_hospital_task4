@@ -23,10 +23,10 @@
         "views/hr_hospital_menus.xml",
     ],
     "demo": [
+        "demo/hr_hospital_disease_demo.xml",
         "demo/hr_hospital_doctor_category_demo.xml",
         "demo/hr_hospital_doctor_demo.xml",
         "demo/hr_hospital_patient_demo.xml",
-        "demo/hr_hospital_disease_demo.xml",
         "demo/hr_hospital_visit_demo.xml",
         "demo/hr_doctor_history_demo.xml",
     ],

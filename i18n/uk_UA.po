@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-08 20:50+0000\n"
-"PO-Revision-Date: 2026-05-08 20:50+0000\n"
+"POT-Creation-Date: 2026-05-08 22:11+0000\n"
+"PO-Revision-Date: 2026-05-08 22:11+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -216,8 +216,14 @@ msgstr "Дата народження"
 
 #. module: hr_hospital
 #: model:ir.model.fields,field_description:hr_hospital.field_hr_hospital_disease__description
+#: model_terms:ir.ui.view,arch_db:hr_hospital.view_hr_hospital_disease_form
 msgid "Description"
 msgstr "Опис"
+
+#. module: hr_hospital
+#: model_terms:ir.ui.view,arch_db:hr_hospital.view_hr_hospital_disease_form
+msgid "Detailed information..."
+msgstr "Детальна інформація..."
 
 #. module: hr_hospital
 #: model_terms:ir.ui.view,arch_db:hr_hospital.view_hr_hospital_dashboard_form
@@ -262,6 +268,7 @@ msgstr "Тип хвороби"
 #: model:ir.model.fields,field_description:hr_hospital.field_hr_hospital_disease_report__disease_ids
 #: model:ir.ui.menu,name:hr_hospital.menu_hr_hospital_diseases
 #: model_terms:ir.ui.view,arch_db:hr_hospital.view_hr_hospital_dashboard_form
+#: model_terms:ir.ui.view,arch_db:hr_hospital.view_hr_hospital_disease_search
 msgid "Diseases"
 msgstr "Хвороби"
 
@@ -413,6 +420,11 @@ msgstr "Згенерувати звіт"
 
 #. module: hr_hospital
 #: model_terms:ir.ui.view,arch_db:hr_hospital.view_hr_hospital_disease_search
+msgid "Groups"
+msgstr "Групи"
+
+#. module: hr_hospital
+#: model_terms:ir.ui.view,arch_db:hr_hospital.view_hr_hospital_disease_search
 msgid "Hierarchy"
 msgstr "Ієрархія"
 
@@ -471,6 +483,11 @@ msgid "ID"
 msgstr "ID"
 
 #. module: hr_hospital
+#: model:ir.model.fields,help:hr_hospital.field_hr_hospital_disease__is_group
+msgid "If set, this record will be considered a category for other diseases"
+msgstr "Якщо встановлено, цей запис буде вважатися категорією для інших хвороб"
+
+#. module: hr_hospital
 #: model:ir.model.fields,field_description:hr_hospital.field_hr_hospital_patient__insurance_policy
 msgid "Insurance Policy"
 msgstr "Страховий поліс"
@@ -486,6 +503,11 @@ msgstr "Інтерн"
 #: model_terms:ir.ui.view,arch_db:hr_hospital.view_hr_hospital_doctor_search
 msgid "Interns"
 msgstr "Інтерни"
+
+#. module: hr_hospital
+#: model:ir.model.fields,field_description:hr_hospital.field_hr_hospital_disease__is_group
+msgid "Is Group"
+msgstr "Є групою"
 
 #. module: hr_hospital
 #: model:ir.model.fields,field_description:hr_hospital.field_hr_hospital_doctor__is_intern
@@ -755,6 +777,11 @@ msgstr "Пошук лікаря"
 #: model_terms:ir.ui.view,arch_db:hr_hospital.view_hr_hospital_patient_search
 msgid "Search Patient"
 msgstr "Пошук пацієнта"
+
+#. module: hr_hospital
+#: model_terms:ir.ui.view,arch_db:hr_hospital.view_hr_hospital_disease_form
+msgid "Select category..."
+msgstr "Оберіть категорію..."
 
 #. module: hr_hospital
 #: model:ir.model.fields,field_description:hr_hospital.field_hr_hospital_doctor_category__sequence
