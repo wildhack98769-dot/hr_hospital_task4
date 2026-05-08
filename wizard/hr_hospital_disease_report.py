@@ -4,6 +4,7 @@ from odoo.exceptions import UserError
 
 class HospitalDiseaseReport(models.TransientModel):
     """Wizard for generating disease reports based on various criteria."""
+
     _name = 'hr.hospital.disease.report'
     _description = 'Hospital Disease Report Wizard'
 
@@ -28,6 +29,6 @@ class HospitalDiseaseReport(models.TransientModel):
         records = self.env['hr.hospital.visit'].search(domain)
 
         if not records:
-            raise UserError("За обраними критеріями візитів не знайдено.")
+            raise UserError('За обраними критеріями візитів не знайдено.')
 
         return self.env.ref('hr_hospital.action_report_disease_statistics').report_action(records)
