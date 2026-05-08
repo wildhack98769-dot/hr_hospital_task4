@@ -27,6 +27,11 @@
                             string="Disease Report"
                             type="action"
                             class="oe_highlight"/>
+
+                    <button name="%(hr_hospital.action_visit_report_wizard)d"
+                            string="Visit Report"
+                            type="action"
+                            class="oe_highlight"/>
                 </header>
                 <sheet>
                     <field name="photo" widget="image" class="oe_avatar" options="{'size': [90, 90]}"/>
