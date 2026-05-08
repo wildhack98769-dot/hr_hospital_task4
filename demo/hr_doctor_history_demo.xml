@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Візит до Хауса -->
+        <record id="visit_house_1" model="hr.hospital.visit">
+            <field name="patient_id" ref="patient_thirteen"/>
+            <field name="doctor_id" ref="doctor_mentor_gregory_house"/>
+            <field name="planned_date" eval="datetime.now().strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="summary">Autoimmune disorder</field>
+        </record>
+
+        <record id="demo_history_chase" model="hr.hospital.doctor.history">
+            <field name="patient_id" ref="patient_thirteen"/>
+            <field name="doctor_id" ref="doctor_intern_robert_chase"/>
+            <field name="appointment_date" eval="(datetime.now() - relativedelta(months=1)).strftime('%Y-%m-%d')"/>
+            <field name="change_date" eval="datetime.now().strftime('%Y-%m-%d')"/>
+            <field name="active">False</field>
+        </record>
+
+        <record id="demo_history_house" model="hr.hospital.doctor.history">
+            <field name="patient_id" ref="patient_thirteen"/>
+            <field name="doctor_id" ref="doctor_mentor_gregory_house"/>
+            <field name="appointment_date" eval="datetime.now().strftime('%Y-%m-%d')"/>
+            <field name="active">True</field>
+        </record>
+    </data>
+</odoo>

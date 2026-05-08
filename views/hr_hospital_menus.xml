@@ -1,30 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <menuitem id="menu_hr_hospital_root" name="Hospital" sequence="10"/>
+    <menuitem id="menu_hr_hospital_root"
+              name="Hospital"
+              web_icon="hr_hospital,static/description/icon.png"
+              action="action_hr_hospital_dashboard"
+              sequence="10"/>
 
-        <menuitem id="menu_hr_hospital_patients"
-                  name="Patients"
-                  parent="menu_hr_hospital_root"
-                  action="action_hr_hospital_patient"
-                  sequence="10"/>
+    <menuitem id="menu_hr_hospital_patients"
+              name="Patients"
+              parent="menu_hr_hospital_root"
+              action="action_hr_hospital_patient"
+              sequence="10"/>
 
-        <menuitem id="menu_hr_hospital_doctors"
-                  name="Doctors"
-                  parent="menu_hr_hospital_root"
-                  action="action_hr_hospital_doctor"
-                  sequence="20"/>
+    <menuitem id="menu_hr_hospital_doctors"
+              name="Doctors"
+              parent="menu_hr_hospital_root"
+              action="action_hr_hospital_doctor"
+              sequence="20"/>
 
-        <menuitem id="menu_hr_hospital_visits"
-                  name="Visits"
-                  parent="menu_hr_hospital_root"
-                  action="action_hr_hospital_visit"
-                  sequence="30"/>
+    <menuitem id="menu_hr_hospital_visits"
+              name="Visits"
+              parent="menu_hr_hospital_root"
+              action="action_hr_hospital_visit"
+              sequence="30"/>
 
-        <menuitem id="menu_hr_hospital_diseases"
-                  name="Diseases"
-                  parent="menu_hr_hospital_root"
-                  action="action_hr_hospital_disease"
-                  sequence="40"/>
-    </data>
+    <menuitem id="menu_hr_hospital_diseases"
+              name="Diseases"
+              parent="menu_hr_hospital_root"
+              action="action_hr_hospital_disease"
+              sequence="40"/>
+
+    <menuitem id="menu_hr_hospital_doctor_category"
+              name="Doctor Qualifications"
+              parent="menu_hr_hospital_root"
+              action="action_hr_hospital_doctor_category"
+              sequence="50"/>
+
+    <menuitem id="menu_hr_hospital_doctor_history"
+              name="Doctor History"
+              parent="menu_hr_hospital_root"
+              action="action_hr_hospital_doctor_history"
+              sequence="60"/>
+
+    <record id="menu_hr_hospital_patients" model="ir.ui.menu">
+        <field name="web_icon">fa-users,#FFFFFF,#0F766E</field>
+        <field name="active">False</field>
+    </record>
+
+    <record id="menu_hr_hospital_doctors" model="ir.ui.menu">
+        <field name="web_icon">fa-user-md,#FFFFFF,#2563EB</field>
+        <field name="active">False</field>
+    </record>
+
+    <record id="menu_hr_hospital_visits" model="ir.ui.menu">
+        <field name="web_icon">fa-calendar-check-o,#FFFFFF,#16A34A</field>
+        <field name="active">False</field>
+    </record>
+
+    <record id="menu_hr_hospital_diseases" model="ir.ui.menu">
+        <field name="web_icon">fa-medkit,#FFFFFF,#DC2626</field>
+        <field name="active">False</field>
+    </record>
+
+    <record id="menu_hr_hospital_doctor_category" model="ir.ui.menu">
+        <field name="web_icon">fa-graduation-cap,#FFFFFF,#7C3AED</field>
+        <field name="active">False</field>
+    </record>
+
+    <record id="menu_hr_hospital_doctor_history" model="ir.ui.menu">
+        <field name="web_icon">fa-history,#FFFFFF,#EA580C</field>
+        <field name="active">False</field>
+    </record>
 </odoo>

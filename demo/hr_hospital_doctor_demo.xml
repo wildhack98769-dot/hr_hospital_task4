@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Doctor Categories (if not already defined in other demo files) -->
+        <record id="doctor_category_intern" model="hr.hospital.doctor.category">
+            <field name="name">Intern</field>
+            <field name="is_intern_category" eval="True"/>
+        </record>
+
+        <record id="doctor_category_general_practitioner" model="hr.hospital.doctor.category">
+            <field name="name">General Practitioner</field>
+            <field name="is_intern_category" eval="False"/>
+        </record>
+
+        <!-- Mentor Doctor -->
+        <record id="doctor_mentor_gregory_house" model="hr.hospital.doctor">
+            <field name="name">Dr. Gregory House</field>
+            <field name="specialization">Diagnostic Medicine</field>
+            <field name="category_id" ref="doctor_category_general_practitioner"/>
+            <field name="phone">+1234567890</field>
+            <field name="email">gregory.house@hospital.com</field>
+            <field name="gender">male</field>
+        </record>
+
+        <!-- Intern Doctor 1 -->
+        <record id="doctor_intern_allison_cameron" model="hr.hospital.doctor">
+            <field name="name">Dr. Allison Cameron</field>
+            <field name="specialization">Immunology</field>
+            <field name="category_id" ref="doctor_category_intern"/>
+            <field name="phone">+1122334455</field>
+            <field name="email">allison.cameron@hospital.com</field>
+            <field name="gender">female</field>
+            <field name="mentor_id" ref="doctor_mentor_gregory_house"/>
+        </record>
+
+        <!-- Intern Doctor 2 -->
+        <record id="doctor_intern_robert_chase" model="hr.hospital.doctor">
+            <field name="name">Dr. Robert Chase</field>
+            <field name="specialization">Surgery</field>
+            <field name="category_id" ref="doctor_category_intern"/>
+            <field name="phone">+9988776655</field>
+            <field name="email">robert.chase@hospital.com</field>
+            <field name="gender">male</field>
+            <field name="mentor_id" ref="doctor_mentor_gregory_house"/>
+        </record>
+
+        <!-- Additional Doctors referenced in visit demo data -->
+        <record id="doctor_cuddy" model="hr.hospital.doctor">
+            <field name="name">Dr. Lisa Cuddy</field>
+            <field name="specialization">Endocrinology</field>
+            <field name="category_id" ref="doctor_category_general_practitioner"/>
+            <field name="phone">+1112223333</field>
+            <field name="email">lisa.cuddy@hospital.com</field>
+            <field name="gender">female</field>
+        </record>
+
+        <record id="doctor_wilson" model="hr.hospital.doctor">
+            <field name="name">Dr. James Wilson</field>
+            <field name="specialization">Oncology</field>
+            <field name="category_id" ref="doctor_category_general_practitioner"/>
+            <field name="phone">+4445556666</field>
+            <field name="email">james.wilson@hospital.com</field>
+            <field name="gender">male</field>
+        </record>
+
+        <record id="doctor_foreman" model="hr.hospital.doctor">
+            <field name="name">Dr. Eric Foreman</field>
+            <field name="specialization">Neurology</field>
+            <field name="category_id" ref="doctor_category_general_practitioner"/>
+            <field name="phone">+7778889999</field>
+            <field name="email">eric.foreman@hospital.com</field>
+            <field name="gender">male</field>
+        </record>
+
+        <record id="doctor_intern_remy_hadley" model="hr.hospital.doctor">
+            <field name="name">Dr. Remy Hadley</field>
+            <field name="specialization">Internal Medicine</field>
+            <field name="category_id" ref="doctor_category_intern"/>
+            <field name="phone">+1555000101</field>
+            <field name="email">remy.hadley@hospital.com</field>
+            <field name="gender">female</field>
+            <field name="mentor_id" ref="doctor_wilson"/>
+        </record>
+
+        <record id="doctor_intern_chris_taub" model="hr.hospital.doctor">
+            <field name="name">Dr. Chris Taub</field>
+            <field name="specialization">Plastic Surgery</field>
+            <field name="category_id" ref="doctor_category_intern"/>
+            <field name="phone">+1555000102</field>
+            <field name="email">chris.taub@hospital.com</field>
+            <field name="gender">male</field>
+            <field name="mentor_id" ref="doctor_foreman"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_hospital_doctor_history_list" model="ir.ui.view">
+        <field name="name">hr.hospital.doctor.history.list</field>
+        <field name="model">hr.hospital.doctor.history</field>
+        <field name="arch" type="xml">
+            <list string="Doctor History">
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+                <field name="appointment_date"/>
+                <field name="change_date"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_hr_hospital_doctor_history_form" model="ir.ui.view">
+        <field name="name">hr.hospital.doctor.history.form</field>
+        <field name="model">hr.hospital.doctor.history</field>
+        <field name="arch" type="xml">
+            <form string="Doctor History Record">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="patient_id" options="{'no_create': True}"/>
+                            <field name="doctor_id" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="appointment_date"/>
+                            <field name="change_date"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_hospital_doctor_history" model="ir.actions.act_window">
+        <field name="name">Doctor History</field>
+        <field name="res_model">hr.hospital.doctor.history</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No doctor history records found.
+            </p>
+        </field>
+    </record>
+
+</odoo>

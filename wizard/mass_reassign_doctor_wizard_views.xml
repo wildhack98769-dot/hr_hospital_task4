@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_mass_reassign_doctor_wizard_form" model="ir.ui.view">
+            <field name="name">mass.reassign.doctor.wizard.form</field>
+            <field name="model">mass.reassign.doctor.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Перепризначити лікаря">
+                    <field name="name" invisible="1"/>
+                    <group>
+                        <field name="doctor_id"/>
+                        <field name="change_date"/>
+                    </group>
+                    <footer>
+                        <button name="action_reassign_doctor" string="Оновити" type="object" class="btn-primary"/>
+                        <button string="Скасувати" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_mass_reassign_doctor_wizard" model="ir.actions.act_window">
+            <field name="name">Перепризначити лікаря</field>
+            <field name="res_model">mass.reassign.doctor.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="model_hr_hospital_patient"/>
+            <field name="binding_view_types">list</field>
+        </record>
+    </data>
+</odoo>

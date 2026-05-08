@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_hospital_dashboard_form" model="ir.ui.view">
+        <field name="name">hr.hospital.dashboard.form</field>
+        <field name="model">hr.hospital.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="Hospital" create="false" edit="false" delete="false">
+                <sheet>
+                    <field name="name" invisible="1"/>
+
+                    <div class="text-center mb-4">
+                        <h1 class="display-4 text-primary">Hospital Management System</h1>
+                        <p class="text-muted">Choose the required operation</p>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-lg-4">
+                            <div class="card h-100 shadow-sm border-0">
+                                <div class="card-body">
+                                    <div class="text-center mb-3">
+                                        <i class="fa fa-users fa-3x text-success"/>
+                                        <h4 class="mt-2">People</h4>
+                                    </div>
+                                    <button name="action_open_patients"
+                                            string="Patients"
+                                            type="object"
+                                            icon="fa-users"
+                                            class="btn btn-success w-100 mb-2 rounded-pill"/>
+                                    <button name="action_open_doctors"
+                                            string="Doctors"
+                                            type="object"
+                                            icon="fa-user-md"
+                                            class="btn btn-success w-100 rounded-pill"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="card h-100 shadow-sm border-0">
+                                <div class="card-body">
+                                    <div class="text-center mb-3">
+                                        <i class="fa fa-calendar-check-o fa-3x text-primary"/>
+                                        <h4 class="mt-2">Visits</h4>
+                                    </div>
+                                    <button name="action_open_visits"
+                                            string="Visits"
+                                            type="object"
+                                            icon="fa-calendar-check-o"
+                                            class="btn btn-primary w-100 mb-2 rounded-pill"/>
+                                    <button name="action_open_doctor_history"
+                                            string="Doctor History"
+                                            type="object"
+                                            icon="fa-history"
+                                            class="btn btn-primary w-100 rounded-pill"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="card h-100 shadow-sm border-0">
+                                <div class="card-body">
+                                    <div class="text-center mb-3">
+                                        <i class="fa fa-medkit fa-3x text-info"/>
+                                        <h4 class="mt-2">Directories</h4>
+                                    </div>
+                                    <button name="action_open_diseases"
+                                            string="Diseases"
+                                            type="object"
+                                            icon="fa-medkit"
+                                            class="btn btn-info w-100 mb-2 rounded-pill"/>
+                                    <button name="action_open_doctor_categories"
+                                            string="Doctor Qualifications"
+                                            type="object"
+                                            icon="fa-graduation-cap"
+                                            class="btn btn-info w-100 rounded-pill"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-lg-4">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body">
+                                    <span class="text-muted">Total Patients</span>
+                                    <h3><field name="patient_count" readonly="1" nolabel="1"/></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body">
+                                    <span class="text-muted">Total Doctors</span>
+                                    <h3><field name="doctor_count" readonly="1" nolabel="1"/></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body">
+                                    <span class="text-muted">Total Visits</span>
+                                    <h3><field name="visit_count" readonly="1" nolabel="1"/></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body">
+                                    <span class="text-muted">Total Diseases</span>
+                                    <h3><field name="disease_count" readonly="1" nolabel="1"/></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body">
+                                    <span class="text-muted">Doctor Qualifications</span>
+                                    <h3><field name="doctor_category_count" readonly="1" nolabel="1"/></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body">
+                                    <span class="text-muted">Doctor History</span>
+                                    <h3><field name="doctor_history_count" readonly="1" nolabel="1"/></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_hospital_dashboard" model="ir.actions.act_window">
+        <field name="name">Hospital</field>
+        <field name="res_model">hr.hospital.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_hr_hospital_dashboard_form"/>
+        <field name="target">current</field>
+    </record>
+</odoo>

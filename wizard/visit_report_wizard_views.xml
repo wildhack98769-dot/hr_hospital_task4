@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_visit_report_wizard_form" model="ir.ui.view">
+            <field name="name">visit.report.wizard.form</field>
+            <field name="model">visit.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Параметри звіту">
+                    <field name="name" invisible="1"/>
+                    <group>
+                        <group>
+                            <field name="doctor_ids" widget="many2many_tags"/>
+                            <field name="patient_ids" widget="many2many_tags"/>
+                            <field name="disease_id"/>
+                        </group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="only_completed"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_generate_report" string="Сформувати" type="object" class="btn-primary"/>
+                        <button string="Скасувати" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_visit_report_wizard" model="ir.actions.act_window">
+            <field name="name">Звіт по візитах</field>
+            <field name="res_model">visit.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" eval="False"/>
+        </record>
+
+        <record id="bind_visit_report_patient" model="ir.actions.act_window">
+            <field name="name">Звіт по візитах</field>
+            <field name="res_model">visit.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="model_hr_hospital_patient"/>
+            <field name="binding_view_types">list,form</field>
+        </record>
+
+        <record id="bind_visit_report_doctor" model="ir.actions.act_window">
+            <field name="name">Звіт по візитах</field>
+            <field name="res_model">visit.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="model_hr_hospital_doctor"/>
+            <field name="binding_view_types">list,form</field>
+        </record>
+    </data>
+</odoo>

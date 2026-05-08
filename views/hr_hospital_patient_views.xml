@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <record id="action_hr_hospital_visit_create_quick" model="ir.actions.act_window">
+            <field name="name">Quick Visit</field>
+            <field name="res_model">hr.hospital.visit</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context">{
+                'default_patient_id': active_id,
+            }</field>
+        </record>
+
         <record id="view_hr_hospital_patient_list" model="ir.ui.view">
             <field name="name">hr.hospital.patient.list</field>
             <field name="model">hr.hospital.patient</field>
@@ -9,6 +19,10 @@
                     <field name="name"/>
                     <field name="date_of_birth"/>
                     <field name="gender"/>
+                    <field name="phone"/>
+                    <field name="blood_group"/>
+                    <field name="personal_doctor_id"/>
+                    <field name="insurance_policy" optional="hide"/>
                 </list>
             </field>
         </record>
@@ -18,14 +32,64 @@
             <field name="model">hr.hospital.patient</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <button name="action_create_visit"
+                                string="Quick Visit"
+                                type="object"
+                                class="oe_highlight"/>
+                        <button name="action_open_patient_visits"
+                                string="Visit History"
+                                type="object"
+                                class="oe_highlight"/>
+                    </header>
                     <sheet>
+                        <field name="photo" widget="image" class="oe_avatar" options="{'size': [256, 256]}"/>
+                        <div class="oe_title">
+                            <label for="name" string="Patient Name"/>
+                            <h1>
+                                <field name="name" placeholder="e.g. John Doe" required="1"/>
+                            </h1>
+                        </div>
                         <group>
-                            <field name="name"/>
-                            <field name="date_of_birth"/>
-                            <field name="gender"/>
+                            <group string="Medical Information">
+                                <field name="date_of_birth"/>
+                                <field name="age"/>
+                                <field name="blood_group"/>
+                                <field name="rh_factor"/>
+                                <field name="personal_doctor_id" options="{'no_create': True}"/>
+                                <field name="insurance_policy"/>
+                            </group>
+                            <group string="Contact &amp; Personal Info">
+                                <field name="gender"/>
+                                <field name="phone" widget="phone"/>
+                                <field name="email" widget="email"/>
+                            </group>
                         </group>
+                        <notebook>
+                            <page string="Doctor History" name="doctor_history">
+                                <field name="doctor_history_ids" readonly="1">
+                                    <list>
+                                        <field name="doctor_id"/>
+                                        <field name="appointment_date"/>
+                                        <field name="change_date"/>
+                                        <field name="active" widget="boolean_toggle"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
+            </field>
+        </record>
+
+        <record id="view_hr_hospital_patient_search" model="ir.ui.view">
+            <field name="name">hr.hospital.patient.search</field>
+            <field name="model">hr.hospital.patient</field>
+            <field name="arch" type="xml">
+                <search string="Search Patient">
+                    <field name="name" string="Patient Name"/>
+                    <field name="phone"/>
+                </search>
             </field>
         </record>
 
@@ -33,6 +97,10 @@
             <field name="name">Patients</field>
             <field name="res_model">hr.hospital.patient</field>
             <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_hr_hospital_patient_search"/>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'list', 'view_id': ref('view_hr_hospital_patient_list')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('view_hr_hospital_patient_form')})]"/>
         </record>
     </data>
 </odoo>

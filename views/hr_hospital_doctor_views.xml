@@ -1,38 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <record id="view_hr_hospital_doctor_list" model="ir.ui.view">
-            <field name="name">hr.hospital.doctor.list</field>
-            <field name="model">hr.hospital.doctor</field>
-            <field name="arch" type="xml">
-                <list>
-                    <field name="name"/>
-                    <field name="specialization"/>
-                    <field name="mentor_id"/>
-                </list>
-            </field>
-        </record>
+    <record id="view_hr_hospital_doctor_list" model="ir.ui.view">
+        <field name="name">hr.hospital.doctor.list</field>
+        <field name="model">hr.hospital.doctor</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="specialization"/>
+                <field name="category_id"/>
+                <field name="mentor_id"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="gender"/>
+                <field name="is_intern"/>
+            </list>
+        </field>
+    </record>
 
-        <record id="view_hr_hospital_doctor_form" model="ir.ui.view">
-            <field name="name">hr.hospital.doctor.form</field>
-            <field name="model">hr.hospital.doctor</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <field name="name"/>
+    <record id="view_hr_hospital_doctor_form" model="ir.ui.view">
+        <field name="name">hr.hospital.doctor.form</field>
+        <field name="model">hr.hospital.doctor</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="%(hr_hospital.action_disease_report_wizard_binding)d"
+                            string="Disease Report"
+                            type="action"
+                            class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <field name="photo" widget="image" class="oe_avatar" options="{'size': [90, 90]}"/>
+                    <div class="oe_title">
+                        <label for="name" string="Full name"/>
+                        <h1>
+                            <field name="name" placeholder="etc. House M.D." required="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Professional Info">
                             <field name="specialization"/>
-                            <field name="mentor_id"/>
+                            <field name="category_id" required="1"/>
+                            <field name="is_intern" invisible="1"/>
+                            <field name="mentor_id" invisible="not is_intern" required="is_intern"/>
                         </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+                        <group string="Personal Info">
+                            <field name="date_of_birth"/>
+                            <field name="age"/>
+                            <field name="gender"/>
+                            <field name="phone" widget="phone"/>
+                            <field name="email" widget="email"/>
+                            <field name="user_id"/>
+                        </group>
+                        <group string="Medical Info">
+                            <field name="blood_group"/>
+                            <field name="rh_factor"/>
+                        </group>
+                    </group>
 
-        <record id="action_hr_hospital_doctor" model="ir.actions.act_window">
-            <field name="name">Doctors</field>
-            <field name="res_model">hr.hospital.doctor</field>
-            <field name="view_mode">list,form</field>
-        </record>
-    </data>
+                    <notebook>
+                        <page string="Mentor" name="mentor" invisible="not is_intern">
+                            <group>
+                                <field name="mentor_id" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="Interns" name="interns" invisible="is_intern">
+                            <field name="intern_ids">
+                                <kanban>
+                                    <field name="name"/>
+                                    <field name="specialization"/>
+                                    <field name="photo"/>
+                                    <field name="is_intern"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div t-attf-class="oe_kanban_global_click_edit oe_semantic_html_override oe_kanban_card {{record.is_intern.raw_value ? 'oe_kanban_color_bg' : ''}}">
+                                                <div class="oe_kanban_details">
+                                                    <strong class="oe_partner_heading"><field name="name"/></strong>
+                                                    <ul>
+                                                        <li>Specialization: <field name="specialization"/></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="oe_kanban_image">
+                                                    <field name="photo" widget="image" class="oe_avatar"/>
+                                                </div>
+                                            </div>
+                                        </t>
+                                        <t t-name="card">
+                                            <t t-call="kanban-box"/>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hr_hospital_doctor_search" model="ir.ui.view">
+        <field name="name">hr.hospital.doctor.search</field>
+        <field name="model">hr.hospital.doctor</field>
+        <field name="arch" type="xml">
+            <search string="Search Doctor">
+                <field name="name"/>
+                <field name="specialization"/>
+                <filter string="Mentors" name="filter_mentors" domain="[('is_intern', '=', False)]"/>
+                <filter string="Interns" name="filter_interns" domain="[('is_intern', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_hr_hospital_visit_create_quick_doctor" model="ir.actions.act_window">
+        <field name="name">Quick Visit</field>
+        <field name="res_model">hr.hospital.visit</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{
+            'default_doctor_id': active_id,
+            'form_view_ref': 'hr_hospital.view_hr_hospital_visit_form'
+        }</field>
+    </record>
+
+    <record id="view_hr_hospital_doctor_kanban" model="ir.ui.view">
+        <field name="name">hr.hospital.doctor.kanban</field>
+        <field name="model">hr.hospital.doctor</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="category_id">
+                <field name="name"/>
+                <field name="specialization"/>
+                <field name="category_id"/>
+                <field name="photo"/>
+                <field name="is_intern"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click_edit oe_semantic_html_override oe_kanban_card {{record.is_intern.raw_value ? 'oe_kanban_color_bg' : ''}}">
+                            <div class="oe_kanban_details">
+                                <strong class="oe_partner_heading"><field name="name"/></strong>
+                                <ul>
+                                    <li>Specialization: <field name="specialization"/></li>
+                                </ul>
+                                <button name="%(action_hr_hospital_visit_create_quick_doctor)d"
+                                        type="action"
+                                        string="Quick Visit"
+                                        class="oe_highlight"/>
+                            </div>
+                            <div class="oe_kanban_image">
+                                <field name="photo" widget="image" class="oe_avatar"/>
+                            </div>
+                        </div>
+                    </t>
+                    <t t-name="card">
+                        <t t-call="kanban-box"/>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_hr_hospital_doctor" model="ir.actions.act_window">
+        <field name="name">Doctors</field>
+        <field name="res_model">hr.hospital.doctor</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="view_hr_hospital_doctor_search"/>
+    </record>
+
 </odoo>
