@@ -23,7 +23,7 @@ class HrHospitalDashboard(models.TransientModel):
             'patient_count': self.env['hr.hospital.patient'].search_count([]),
             'doctor_count': self.env['hr.hospital.doctor'].search_count([]),
             'visit_count': self.env['hr.hospital.visit'].search_count([]),
-            'disease_count': self.env['hr.hospital.disease'].search_count([]),
+            'disease_count': self.env['hr.hospital.disease'].search_count([("is_group", "=", False)]),
             'doctor_category_count': self.env['hr.hospital.doctor.category'].search_count([]),
             'doctor_history_count': self.env['hr.hospital.doctor.history'].search_count([]),
         }
