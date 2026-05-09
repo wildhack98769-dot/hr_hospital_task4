@@ -1,94 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="view_hr_hospital_visit_list" model="ir.ui.view">
-            <field name="name">hr.hospital.visit.list</field>
-            <field name="model">hr.hospital.visit</field>
+        <!-- KANBAN: Візуальна черга візитів -->
+        <record id="view_hr_hospital_visit_kanban" model="ir.ui.view">
+            <field name="name">hr.hospital.visit.kanban</field>
+            <field name="hr.hospital.visit"/>
             <field name="arch" type="xml">
-                <list decoration-info="state == 'planned'"
-                      decoration-success="state == 'done'"
-                      decoration-danger="state == 'cancelled'">
-                    <field name="planned_date"/>
-                    <field name="actual_date"/>
-                    <field name="patient_id"/>
-                    <field name="doctor_id"/>
-                    <field name="disease_id"/>
-                    <field name="state" widget="badge"
-                           decoration-info="state == 'planned'"
-                           decoration-success="state == 'done'"
-                           decoration-danger="state == 'cancelled'"/>
-                </list>
-            </field>
-        </record>
-
-        <record id="view_hr_hospital_visit_search" model="ir.ui.view">
-            <field name="name">hr.hospital.visit.search</field>
-            <field name="model">hr.hospital.visit</field>
-            <field name="arch" type="xml">
-                <search>
-                    <field name="patient_id"/>
-                    <field name="doctor_id"/>
-                    <field name="disease_id"/>
+                <kanban default_group_by="state" quick_create="false" sample="1">
                     <field name="state"/>
+                    <field name="patient_id"/>
+                    <field name="doctor_id"/>
                     <field name="planned_date"/>
-                    <filter name="current_year"
-                            string="Current Year"
-                            date="planned_date"
-                            default_period="year"/>
-                    <group>
-                        <filter name="group_by_state" string="Status" context="{'group_by': 'state'}"/>
-                        <filter name="group_by_doctor" string="Doctor" context="{'group_by': 'doctor_id'}"/>
-                        <filter name="group_by_month" string="Month" context="{'group_by': 'planned_date:month'}"/>
-                    </group>
-                    <searchpanel>
-                        <field name="doctor_id"/>
-                    </searchpanel>
-                </search>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click shadow-sm border-0 rounded p-3 mb-2">
+                                <div class="d-flex justify-content-between">
+                                    <strong class="o_kanban_record_title text-primary" style="font-size: 1.1em;">
+                                        <field name="patient_id"/>
+                                    </strong>
+                                    <field name="state" widget="label_selection"
+                                           options="{'classes': {'planned': 'info', 'done': 'success', 'cancelled': 'danger'}}"/>
+                                </div>
+                                <div class="mt-2 text-muted">
+                                    <i class="fa fa-user-md me-1"/> <field name="doctor_id"/>
+                                </div>
+                                <div class="mt-1 small fw-bold text-dark">
+                                    <i class="fa fa-calendar-check-o me-1"/> <field name="planned_date"/>
+                                </div>
+                                <div class="mt-2 border-top pt-2 text-truncate text-muted italic" t-if="record.disease_id">
+                                    <i class="fa fa-stethoscope me-1"/> <field name="disease_id"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
             </field>
         </record>
 
+        <!-- FORM: Робимо епікриз головним акцентом -->
         <record id="view_hr_hospital_visit_form" model="ir.ui.view">
             <field name="name">hr.hospital.visit.form</field>
             <field name="model">hr.hospital.visit</field>
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button name="action_done" string="Завершити" type="object"
-                                class="oe_highlight" invisible="state != 'planned'"/>
-                        <field name="state" widget="statusbar" statusbar_visible="planned,done,cancelled"/>
+                        <button name="action_done" string="Завершити візит" type="object"
+                                class="btn-success shadow-sm" invisible="state != 'planned'"/>
+                        <button name="action_cancel" string="Скасувати" type="object"
+                                class="btn-secondary" invisible="state == 'cancelled'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="planned,done"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <button name="action_open_same_disease_visits"
-                                    type="object"
-                                    class="oe_stat_button"
-                                    icon="fa-stethoscope"
-                                    invisible="not disease_id">
-                                <field name="same_disease_visit_count" widget="statinfo" string="Схожі візити"/>
+                            <button name="action_open_same_disease_visits" type="object" class="oe_stat_button" icon="fa-history" invisible="not disease_id">
+                                <field name="same_disease_visit_count" widget="statinfo" string="Схожі кейси"/>
                             </button>
                         </div>
                         <div class="oe_title">
-                            <label for="name"/>
-                            <h1>
-                                <field name="name" readonly="1"/>
-                            </h1>
+                            <span class="text-muted text-uppercase small fw-bold">Візит №</span>
+                            <h1><field name="name" readonly="1" class="text-primary"/></h1>
                         </div>
                         <group>
-                            <group string="Пацієнт та лікар">
-                                <field name="patient_id"/>
-                                <field name="doctor_id"/>
-                                <field name="disease_id"/>
+                            <group string="Медична пара" name="main_info">
+                                <field name="patient_id" widget="many2one_avatar" options="{'no_create': True}"/>
+                                <field name="doctor_id" widget="many2one_avatar_user" options="{'no_create': True}"/>
+                                <field name="disease_id" options="{'no_create': True, 'no_open': False}"/>
                             </group>
-                            <group string="Дати візиту">
+                            <group string="Час та статус" name="timing">
                                 <field name="planned_date"/>
                                 <field name="actual_date" readonly="state == 'done'"/>
-                                <field name="active"/>
+                                <field name="active" widget="boolean_toggle"/>
                             </group>
                         </group>
                         <notebook>
-                            <page string="Епікриз" name="medical_details">
-                                <field name="summary" widget="html"
-                                       placeholder="Опишіть симптоми, діагноз та призначене лікування..."/>
+                            <page string="📝 Епікриз та Лікування" name="medical_details">
+                                <field name="summary" widget="html" class="oe_memo"
+                                       placeholder="Опишіть симптоми, діагноз та план лікування..."/>
                             </page>
                         </notebook>
                     </sheet>
@@ -96,48 +83,18 @@
             </field>
         </record>
 
-        <record id="view_hr_hospital_visit_calendar" model="ir.ui.view">
-            <field name="name">hr.hospital.visit.calendar</field>
-            <field name="model">hr.hospital.visit</field>
-            <field name="arch" type="xml">
-                <calendar string="Visits" date_start="planned_date" date_stop="actual_date" color="doctor_id" mode="month">
-                    <field name="patient_id"/>
-                    <field name="doctor_id"/>
-                    <field name="disease_id"/>
-                    <field name="state"/>
-                </calendar>
-            </field>
-        </record>
-
-        <record id="view_hr_hospital_visit_pivot" model="ir.ui.view">
-            <field name="name">hr.hospital.visit.pivot</field>
-            <field name="model">hr.hospital.visit</field>
-            <field name="arch" type="xml">
-                <pivot string="Visits by Doctor and Status">
-                    <field name="doctor_id" type="row"/>
-                    <field name="planned_date" type="row" interval="month"/>
-                    <field name="state" type="col"/>
-                </pivot>
-            </field>
-        </record>
-
-        <record id="view_hr_hospital_visit_graph" model="ir.ui.view">
-            <field name="name">hr.hospital.visit.graph</field>
-            <field name="model">hr.hospital.visit</field>
-            <field name="arch" type="xml">
-                <graph string="Monthly Visits by Disease" type="bar" stacked="True">
-                    <field name="planned_date" interval="month"/>
-                    <field name="disease_id"/>
-                </graph>
-            </field>
-        </record>
-
+        <!-- ACTION: Оновлюємо режими перегляду -->
         <record id="action_hr_hospital_visit" model="ir.actions.act_window">
             <field name="name">Visits</field>
             <field name="res_model">hr.hospital.visit</field>
-            <field name="view_mode">list,form,calendar,pivot,graph</field>
+            <field name="view_mode">kanban,list,calendar,form,pivot,graph</field>
             <field name="search_view_id" ref="view_hr_hospital_visit_search"/>
-            <field name="context">{'search_default_current_year': 1}</field>
+            <field name="context">{'search_default_current_year': 1, 'search_default_group_by_state': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Час планувати новий візит!
+                </p>
+            </field>
         </record>
     </data>
 </odoo>

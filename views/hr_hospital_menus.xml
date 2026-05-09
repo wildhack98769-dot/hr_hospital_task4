@@ -10,65 +10,46 @@
               name="Patients"
               parent="menu_hr_hospital_root"
               action="action_hr_hospital_patient"
+              web_icon="fa-users,#FFFFFF,#0F766E"
               sequence="10"/>
 
     <menuitem id="menu_hr_hospital_doctors"
               name="Doctors"
               parent="menu_hr_hospital_root"
               action="action_hr_hospital_doctor"
+              web_icon="fa-user-md,#FFFFFF,#2563EB"
               sequence="20"/>
 
     <menuitem id="menu_hr_hospital_visits"
               name="Visits"
               parent="menu_hr_hospital_root"
               action="action_hr_hospital_visit"
+              web_icon="fa-calendar-check-o,#FFFFFF,#16A34A"
               sequence="30"/>
+
+    <menuitem id="menu_hr_hospital_config"
+              name="Configuration"
+              parent="menu_hr_hospital_root"
+              sequence="100"/>
 
     <menuitem id="menu_hr_hospital_diseases"
               name="Diseases"
-              parent="menu_hr_hospital_root"
+              parent="menu_hr_hospital_config"
               action="action_hr_hospital_disease"
-              sequence="40"/>
+              web_icon="fa-medkit,#FFFFFF,#DC2626"
+              sequence="10"/>
 
     <menuitem id="menu_hr_hospital_doctor_category"
               name="Doctor Qualifications"
-              parent="menu_hr_hospital_root"
+              parent="menu_hr_hospital_config"
               action="action_hr_hospital_doctor_category"
-              sequence="50"/>
+              web_icon="fa-graduation-cap,#FFFFFF,#7C3AED"
+              sequence="20"/>
 
     <menuitem id="menu_hr_hospital_doctor_history"
               name="Doctor History"
-              parent="menu_hr_hospital_root"
+              parent="menu_hr_hospital_config"
               action="action_hr_hospital_doctor_history"
-              sequence="60"/>
-
-    <record id="menu_hr_hospital_patients" model="ir.ui.menu">
-        <field name="web_icon">fa-users,#FFFFFF,#0F766E</field>
-        <field name="active">False</field>
-    </record>
-
-    <record id="menu_hr_hospital_doctors" model="ir.ui.menu">
-        <field name="web_icon">fa-user-md,#FFFFFF,#2563EB</field>
-        <field name="active">False</field>
-    </record>
-
-    <record id="menu_hr_hospital_visits" model="ir.ui.menu">
-        <field name="web_icon">fa-calendar-check-o,#FFFFFF,#16A34A</field>
-        <field name="active">False</field>
-    </record>
-
-    <record id="menu_hr_hospital_diseases" model="ir.ui.menu">
-        <field name="web_icon">fa-medkit,#FFFFFF,#DC2626</field>
-        <field name="active">False</field>
-    </record>
-
-    <record id="menu_hr_hospital_doctor_category" model="ir.ui.menu">
-        <field name="web_icon">fa-graduation-cap,#FFFFFF,#7C3AED</field>
-        <field name="active">False</field>
-    </record>
-
-    <record id="menu_hr_hospital_doctor_history" model="ir.ui.menu">
-        <field name="web_icon">fa-history,#FFFFFF,#EA580C</field>
-        <field name="active">False</field>
-    </record>
+              web_icon="fa-history,#FFFFFF,#EA580C"
+              sequence="30"/>
 </odoo>

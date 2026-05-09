@@ -4,140 +4,116 @@
         <field name="name">hr.hospital.dashboard.form</field>
         <field name="model">hr.hospital.dashboard</field>
         <field name="arch" type="xml">
-            <form string="Hospital" create="false" edit="false" delete="false">
+            <form string="Hospital" create="false" edit="false" delete="false" class="o_hospital_dashboard">
                 <sheet>
                     <field name="name" invisible="1"/>
 
-                    <div class="text-center mb-4">
-                        <h1 class="display-4 text-primary">Hospital Management System</h1>
-                        <p class="text-muted">Choose the required operation</p>
+                    <div class="text-center mb-3 mb-md-5">
+                        <h1 class="h2 h1-md text-primary fw-bold">Hospital System</h1>
+                        <p class="text-muted d-none d-sm-block">Оберіть необхідну операцію для початку роботи</p>
                     </div>
 
-                    <div class="row g-3 mb-3">
-                        <div class="col-lg-4">
-                            <div class="card h-100 shadow-sm border-0">
-                                <div class="card-body">
-                                    <div class="text-center mb-3">
-                                        <i class="fa fa-users fa-3x text-success"/>
-                                        <h4 class="mt-2">People</h4>
+                    <div class="row row-cols-1 row-cols-md-3 g-3 mb-4">
+
+                        <div class="col">
+                            <div class="card h-100 shadow-sm border-0 bg-light">
+                                <div class="card-body p-3 text-center">
+                                    <div class="mb-3">
+                                        <i class="fa fa-users fa-2x fa-md-3x text-success"/>
+                                        <h5 class="mt-2 fw-bold">Персонал та пацієнти</h5>
                                     </div>
-                                    <button name="action_open_patients"
-                                            string="Patients"
-                                            type="object"
-                                            icon="fa-users"
-                                            class="btn btn-success w-100 mb-2 rounded-pill"/>
-                                    <button name="action_open_doctors"
-                                            string="Doctors"
-                                            type="object"
-                                            icon="fa-user-md"
-                                            class="btn btn-success w-100 rounded-pill"/>
+                                    <div class="d-grid gap-2">
+                                        <button name="action_open_patients" string="Пацієнти" type="object"
+                                                class="btn btn-success rounded-pill py-2 shadow-sm"/>
+                                        <button name="action_open_doctors" string="Лікарі" type="object"
+                                                class="btn btn-outline-success rounded-pill py-2"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-4">
-                            <div class="card h-100 shadow-sm border-0">
-                                <div class="card-body">
-                                    <div class="text-center mb-3">
-                                        <i class="fa fa-calendar-check-o fa-3x text-primary"/>
-                                        <h4 class="mt-2">Visits</h4>
+                        <div class="col">
+                            <div class="card h-100 shadow-sm border-0 bg-light">
+                                <div class="card-body p-3 text-center">
+                                    <div class="mb-3">
+                                        <i class="fa fa-calendar-check-o fa-2x fa-md-3x text-primary"/>
+                                        <h5 class="mt-2 fw-bold">Журнал візитів</h5>
                                     </div>
-                                    <button name="action_open_visits"
-                                            string="Visits"
-                                            type="object"
-                                            icon="fa-calendar-check-o"
-                                            class="btn btn-primary w-100 mb-2 rounded-pill"/>
-                                    <button name="action_open_doctor_history"
-                                            string="Doctor History"
-                                            type="object"
-                                            icon="fa-history"
-                                            class="btn btn-primary w-100 rounded-pill"/>
+                                    <div class="d-grid gap-2">
+                                        <button name="action_open_visits" string="Візити" type="object"
+                                                class="btn btn-primary rounded-pill py-2 shadow-sm"/>
+                                        <button name="action_open_doctor_history" string="Історія лікарів" type="object"
+                                                class="btn btn-outline-primary rounded-pill py-2"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-4">
-                            <div class="card h-100 shadow-sm border-0">
-                                <div class="card-body">
-                                    <div class="text-center mb-3">
-                                        <i class="fa fa-medkit fa-3x text-info"/>
-                                        <h4 class="mt-2">Directories</h4>
+                        <div class="col">
+                            <div class="card h-100 shadow-sm border-0 bg-light">
+                                <div class="card-body p-3 text-center">
+                                    <div class="mb-3">
+                                        <i class="fa fa-medkit fa-2x fa-md-3x text-info"/>
+                                        <h5 class="mt-2 fw-bold">Довідники</h5>
                                     </div>
-                                    <button name="action_open_diseases"
-                                            string="Diseases"
-                                            type="object"
-                                            icon="fa-medkit"
-                                            class="btn btn-info w-100 mb-2 rounded-pill"/>
-                                    <button name="action_open_doctor_categories"
-                                            string="Doctor Qualifications"
-                                            type="object"
-                                            icon="fa-graduation-cap"
-                                            class="btn btn-info w-100 rounded-pill"/>
+                                    <div class="d-grid gap-2">
+                                        <button name="action_open_diseases" string="Хвороби" type="object"
+                                                class="btn btn-info text-white rounded-pill py-2 shadow-sm"/>
+                                        <button name="action_open_doctor_categories" string="Кваліфікації" type="object"
+                                                class="btn btn-outline-info rounded-pill py-2"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row g-3">
-                        <div class="col-lg-4">
-                            <div class="card shadow-sm border-0">
-                                <div class="card-body">
-                                    <span class="text-muted">Total Patients</span>
-                                    <h3><field name="patient_count" readonly="1" nolabel="1"/></h3>
-                                </div>
+                    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-2 text-center">
+
+                        <div class="col">
+                            <div class="p-2 border rounded bg-white shadow-sm h-100">
+                                <small class="text-muted d-block text-truncate">Пацієнти</small>
+                                <span class="h4 fw-bold text-success"><field name="patient_count" readonly="1"/></span>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="card shadow-sm border-0">
-                                <div class="card-body">
-                                    <span class="text-muted">Total Doctors</span>
-                                    <h3><field name="doctor_count" readonly="1" nolabel="1"/></h3>
-                                </div>
+
+                        <div class="col">
+                            <div class="p-2 border rounded bg-white shadow-sm h-100">
+                                <small class="text-muted d-block text-truncate">Лікарі</small>
+                                <span class="h4 fw-bold text-success"><field name="doctor_count" readonly="1"/></span>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="card shadow-sm border-0">
-                                <div class="card-body">
-                                    <span class="text-muted">Total Visits</span>
-                                    <h3><field name="visit_count" readonly="1" nolabel="1"/></h3>
-                                </div>
+
+                        <div class="col">
+                            <div class="p-2 border rounded bg-white shadow-sm h-100">
+                                <small class="text-muted d-block text-truncate">Візити</small>
+                                <span class="h4 fw-bold text-primary"><field name="visit_count" readonly="1"/></span>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="card shadow-sm border-0">
-                                <div class="card-body">
-                                    <span class="text-muted">Total Diseases</span>
-                                    <h3><field name="disease_count" readonly="1" nolabel="1"/></h3>
-                                </div>
+
+                        <div class="col">
+                            <div class="p-2 border rounded bg-white shadow-sm h-100">
+                                <small class="text-muted d-block text-truncate">Хвороби</small>
+                                <span class="h4 fw-bold text-info"><field name="disease_count" readonly="1"/></span>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="card shadow-sm border-0">
-                                <div class="card-body">
-                                    <span class="text-muted">Doctor Qualifications</span>
-                                    <h3><field name="doctor_category_count" readonly="1" nolabel="1"/></h3>
-                                </div>
+
+                        <div class="col">
+                            <div class="p-2 border rounded bg-white shadow-sm h-100">
+                                <small class="text-muted d-block text-truncate">Кваліф.</small>
+                                <span class="h4 fw-bold text-info"><field name="doctor_category_count" readonly="1"/></span>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="card shadow-sm border-0">
-                                <div class="card-body">
-                                    <span class="text-muted">Doctor History</span>
-                                    <h3><field name="doctor_history_count" readonly="1" nolabel="1"/></h3>
-                                </div>
+
+                        <div class="col">
+                            <div class="p-2 border rounded bg-white shadow-sm h-100">
+                                <small class="text-muted d-block text-truncate">Історія</small>
+                                <span class="h4 fw-bold text-secondary"><field name="doctor_history_count" readonly="1"/></span>
                             </div>
                         </div>
+
                     </div>
                 </sheet>
             </form>
         </field>
-    </record>
-
-    <record id="action_hr_hospital_dashboard" model="ir.actions.act_window">
-        <field name="name">Hospital</field>
-        <field name="res_model">hr.hospital.dashboard</field>
-        <field name="view_mode">form</field>
-        <field name="view_id" ref="view_hr_hospital_dashboard_form"/>
-        <field name="target">current</field>
     </record>
 </odoo>
