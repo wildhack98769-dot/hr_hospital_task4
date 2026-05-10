@@ -12,7 +12,11 @@ class VisitReportWizard(models.TransientModel):
     date_start = fields.Date(string='Start Date')
     date_end = fields.Date(string='End Date')
     only_completed = fields.Boolean(string='Only Completed Visits')
-    disease_id = fields.Many2one('hr.hospital.disease', string='Disease')
+    disease_id = fields.Many2one(
+        'hr.hospital.disease',
+        string='Disease',
+        domain=[('is_group', '=', False)],
+    )
 
     @api.model
     def default_get(self, fields_list):

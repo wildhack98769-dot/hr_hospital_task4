@@ -71,7 +71,10 @@
                             <group string="Medical Team">
                                 <field name="patient_id" options="{'no_create': True}"/>
                                 <field name="doctor_id" options="{'no_create': True}"/>
-                                <field name="disease_id" options="{'no_create': True}"/>
+                                <field name="disease_id"
+                                       options="{'no_create': True}"
+                                       domain="[('is_group', '=', False)]"
+                                       context="{'search_default_filter_is_not_group': 1}"/>
                             </group>
                             <group string="Time and Status">
                                 <field name="planned_date"/>
@@ -155,7 +158,6 @@
 	                    <field name="doctor_id" type="row"/>
 	                    <field name="planned_date" type="col" interval="month"/>
 	                    <field name="state" type="col"/>
-	                    <field name="id" type="measure"/>
 	                </pivot>
 	            </field>
 	        </record>
@@ -167,7 +169,6 @@
 	                <graph string="Visits Analysis" type="bar" stacked="1">
 	                    <field name="planned_date" type="row" interval="month"/>
 	                    <field name="disease_id" type="col"/>
-	                    <field name="id" type="measure"/>
 	                </graph>
 	            </field>
 	        </record>

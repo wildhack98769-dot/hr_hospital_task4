@@ -33,7 +33,11 @@ class HospitalVisit(models.Model):
     patient_id = fields.Many2one('hr.hospital.patient', string='Patient', required=True)
 
     summary = fields.Html(string='Epicrisis / Conclusion')
-    disease_id = fields.Many2one('hr.hospital.disease', string='Disease')
+    disease_id = fields.Many2one(
+        'hr.hospital.disease',
+        string='Disease',
+        domain=[('is_group', '=', False)],
+    )
 
     active = fields.Boolean(string='Active', default=True)
     same_disease_visit_count = fields.Integer(

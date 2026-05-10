@@ -12,7 +12,11 @@
                     </group>
                     <group string="Filters">
                         <field name="doctor_ids" widget="many2many_tags" placeholder="All Doctors"/>
-                        <field name="disease_ids" widget="many2many_tags" placeholder="All Diseases"/>
+                        <field name="disease_ids"
+                               widget="many2many_tags"
+                               domain="[('is_group', '=', False)]"
+                               placeholder="All Diseases"
+                               context="{'search_default_filter_is_not_group': 1}"/>
                     </group>
                 </group>
                 <footer>

@@ -21,7 +21,11 @@ class HospitalDiseaseReport(models.TransientModel):
     start_date = fields.Date(string='Start Date', required=True, default=_default_start_date)
     end_date = fields.Date(string='End Date', required=True, default=_default_end_date)
     doctor_ids = fields.Many2many('hr.hospital.doctor', string='Doctors')
-    disease_ids = fields.Many2many('hr.hospital.disease', string='Diseases')
+    disease_ids = fields.Many2many(
+        'hr.hospital.disease',
+        string='Diseases',
+        domain=[('is_group', '=', False)],
+    )
 
     def _get_records(self):
         self.ensure_one()

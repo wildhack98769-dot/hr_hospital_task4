@@ -11,7 +11,9 @@
                         <group>
                             <field name="doctor_ids" widget="many2many_tags"/>
                             <field name="patient_ids" widget="many2many_tags"/>
-                            <field name="disease_id"/>
+                            <field name="disease_id"
+                                   domain="[('is_group', '=', False)]"
+                                   context="{'search_default_filter_is_not_group': 1}"/>
                         </group>
                         <group>
                             <field name="date_start"/>
