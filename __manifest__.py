@@ -11,6 +11,7 @@
         "wizard/hr_hospital_disease_report_template.xml",
         "report/hr_hospital_report_actions.xml",
         "wizard/hr_hospital_disease_report_wizard_views.xml",
+        "wizard/hr_hospital_disease_month_report_wizard_views.xml",
         "wizard/mass_reassign_doctor_wizard_views.xml",
         "wizard/visit_report_wizard_views.xml",
         "views/hr_hospital_visit_views.xml",
@@ -33,5 +34,10 @@
     "installable": True,
     "application": True,
     "images": ["static/description/icon.png"],
-    "assets": {"web.assets_backend": ["hr_hospital/static/src/dashboard/**/*.js"]},
+    "assets": {
+        "web.assets_backend": [
+            "hr_hospital/static/src/dashboard/**/*.js",
+            "hr_hospital/static/src/scss/hr_hospital_kanban.scss",
+        ]
+    },
 }

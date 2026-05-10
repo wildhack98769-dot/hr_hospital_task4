@@ -119,33 +119,5 @@
             <field name="photo" type="base64" file="hr_hospital/static/img/demo/Taub.jpg"/>
         </record>
 
-        <record id="doctor_intern_new_1" model="hr.hospital.doctor">
-            <field name="name">Dr. John Doe</field>
-            <field name="specialization">General Practice</field>
-            <field name="category_id" ref="doctor_category_intern"/>
-            <field name="date_of_birth">1996-08-09</field>
-            <field name="blood_group">A</field>
-            <field name="rh_factor">plus</field>
-            <field name="phone">+1555111222</field>
-            <field name="email">john.doe@hospital.com</field>
-            <field name="gender">male</field>
-            <field name="mentor_id" ref="doctor_mentor_gregory_house"/>
-            <field name="photo" type="base64" file="hr_hospital/static/img/demo/House.jpg"/>
-        </record>
-
-        <record id="doctor_intern_new_2" model="hr.hospital.doctor">
-            <field name="name">Dr. Jane Smith</field>
-            <field name="specialization">Pediatrics</field>
-            <field name="category_id" ref="doctor_category_intern"/>
-            <field name="date_of_birth">1994-12-03</field>
-            <field name="blood_group">0</field>
-            <field name="rh_factor">plus</field>
-            <field name="phone">+1555333444</field>
-            <field name="email">jane.smith@hospital.com</field>
-            <field name="gender">female</field>
-            <field name="mentor_id" ref="doctor_cuddy"/>
-            <field name="photo" type="base64" file="hr_hospital/static/img/demo/Cameron.jpeg"/>
-        </record>
-
     </data>
 </odoo>

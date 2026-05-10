@@ -1,0 +1,51 @@
+.o_kanban_view.o_hospital_kanban_view {
+    .o_kanban_renderer {
+        .o_kanban_record {
+            display: flex;
+        }
+    }
+
+    .o_hospital_kanban_card {
+        width: 100%;
+        padding: 12px;
+        gap: 8px;
+        min-height: 232px;
+        overflow: hidden;
+    }
+
+    .o_hospital_kanban_card_image {
+        width: 88px;
+        height: 88px;
+        border-radius: 999px;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+    }
+
+    .o_hospital_kanban_card_body {
+        min-height: 0;
+        width: 100%;
+        flex: 1 1 auto;
+    }
+
+    .o_hospital_kanban_title {
+        line-height: 1.15;
+        min-height: 2.3em;
+    }
+
+    .o_hospital_kanban_meta {
+        line-height: 1.25;
+        min-height: 1.25em;
+    }
+
+    .o_hospital_kanban_badge_placeholder {
+        display: block;
+        height: 24px;
+    }
+}

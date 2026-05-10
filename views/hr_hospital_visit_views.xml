@@ -51,7 +51,7 @@
                                 class="btn-primary" invisible="state != 'cancelled'"/>
 
                         <button name="%(hr_hospital.action_disease_report_wizard_binding)d"
-                                string="Disease Report" type="action" class="oe_highlight"/>
+                                string="Disease Report (PDF)" type="action" class="oe_highlight"/>
                         <button name="%(hr_hospital.action_visit_report_wizard)d"
                                 string="Visit Report" type="action" class="oe_highlight"/>
 

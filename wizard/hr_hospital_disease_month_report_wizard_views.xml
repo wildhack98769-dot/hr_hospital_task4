@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_hospital_disease_month_report_form" model="ir.ui.view">
+            <field name="name">hr.hospital.disease.month.report.form</field>
+            <field name="model">hr.hospital.disease.month.report</field>
+            <field name="arch" type="xml">
+                <form string="Disease Month Report">
+                    <group>
+                        <group string="Period">
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                        <group string="Filters">
+                            <field name="doctor_ids" widget="many2many_tags" placeholder="All Doctors"/>
+                            <field name="disease_ids"
+                                   widget="many2many_tags"
+                                   domain="[('is_group', '=', False)]"
+                                   placeholder="All Diseases"
+                                   context="{'search_default_filter_is_not_group': 1}"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_generate_report" string="Generate" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_hospital_disease_month_report_wizard" model="ir.actions.act_window">
+            <field name="name">Disease Month Report</field>
+            <field name="res_model">hr.hospital.disease.month.report</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="model_hr_hospital_doctor"/>
+            <field name="binding_type">report</field>
+            <field name="binding_view_types">list,form</field>
+        </record>
+    </data>
+</odoo>
