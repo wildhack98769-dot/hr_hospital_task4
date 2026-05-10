@@ -5,22 +5,22 @@
             <field name="name">mass.reassign.doctor.wizard.form</field>
             <field name="model">mass.reassign.doctor.wizard</field>
             <field name="arch" type="xml">
-                <form string="Перепризначити лікаря">
+                <form string="Reassign Doctor">
                     <field name="name" invisible="1"/>
                     <group>
                         <field name="doctor_id"/>
                         <field name="change_date"/>
                     </group>
                     <footer>
-                        <button name="action_reassign_doctor" string="Оновити" type="object" class="btn-primary"/>
-                        <button string="Скасувати" class="btn-secondary" special="cancel"/>
+                        <button name="action_reassign_doctor" string="Update" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
                     </footer>
                 </form>
             </field>
         </record>
 
         <record id="action_mass_reassign_doctor_wizard" model="ir.actions.act_window">
-            <field name="name">Перепризначити лікаря</field>
+            <field name="name">Reassign Doctor</field>
             <field name="res_model">mass.reassign.doctor.wizard</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>

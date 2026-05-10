@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="0">
+    <data noupdate="1">
         <record id="doctor_category_expert" model="hr.hospital.doctor.category">
             <field name="name">Expert</field>
             <field name="sequence">1</field>

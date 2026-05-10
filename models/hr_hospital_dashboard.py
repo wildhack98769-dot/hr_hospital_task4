@@ -16,8 +16,6 @@ class HrHospitalDashboard(models.TransientModel):
     doctor_category_count = fields.Integer(compute='_compute_counts')
     doctor_history_count = fields.Integer(compute='_compute_counts')
 
-    # region Compute methods
-
     def _compute_counts(self):
         counts = {
             'patient_count': self.env['hr.hospital.patient'].search_count([]),
@@ -30,10 +28,6 @@ class HrHospitalDashboard(models.TransientModel):
         for dashboard in self:
             for field_name, count in counts.items():
                 dashboard[field_name] = count
-
-    # endregion
-
-    # region Actions
 
     def _open_action(self, xmlid):
         """Helper to open a specific action by XML ID."""
@@ -62,5 +56,3 @@ class HrHospitalDashboard(models.TransientModel):
     def action_open_doctor_history(self):
         """Opens the list view for doctor history."""
         return self._open_action('hr_hospital.action_hr_hospital_doctor_history')
-
-    # endregion

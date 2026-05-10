@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="action_hr_hospital_patient" model="ir.actions.act_window">
-            <field name="name">Patients</field>
-            <field name="res_model">hr.hospital.patient</field>
-            <field name="view_mode">list,kanban,form</field>
-            <field name="search_view_id" ref="view_hr_hospital_patient_search"/>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Register your first patient
-                </p>
-            </field>
-        </record>
-
         <record id="view_hr_hospital_patient_kanban" model="ir.ui.view">
             <field name="name">hr.hospital.patient.kanban</field>
             <field name="model">hr.hospital.patient</field>
@@ -22,13 +10,13 @@
                     <field name="photo"/>
                     <field name="age"/>
                     <field name="phone"/>
-                    <field name="blood_group"/>
-                    <templates>
-                        <t t-name="kanban-box">
-                            <div class="oe_kanban_global_click d-flex align-items-center p-2 shadow-sm border-0 rounded">
-                                <div class="o_kanban_image me-3">
-                                    <field name="photo" widget="image" class="rounded-circle" options="{'zoom': true, 'preview_image': 'photo'}"/>
-                                </div>
+	                    <field name="blood_group"/>
+	                    <templates>
+	                        <t t-name="card">
+	                            <div class="oe_kanban_global_click d-flex align-items-center p-2 shadow-sm border-0 rounded">
+	                                <div class="o_kanban_image me-3">
+	                                    <field name="photo" widget="image" class="rounded-circle" options="{'zoom': true, 'preview_image': 'photo'}"/>
+	                                </div>
                                 <div class="oe_kanban_details">
                                     <strong class="o_kanban_record_title" style="font-size: 1.1em;"><field name="name"/></strong>
                                     <div class="text-muted small mt-1">
@@ -53,7 +41,8 @@
             <field name="model">hr.hospital.patient</field>
             <field name="arch" type="xml">
                 <list sample="1">
-                    <field name="name" font-weight="bold"/>
+                    <field name="avatar_128" widget="image" class="oe_avatar" options="{'size': [32, 32]}"/>
+                    <field name="name"/>
                     <field name="date_of_birth" optional="show"/>
                     <field name="age" optional="show"/>
                     <field name="gender" widget="badge" decoration-info="gender == 'male'" decoration-danger="gender == 'female'"/>
@@ -125,18 +114,30 @@
             <field name="name">hr.hospital.patient.search</field>
             <field name="model">hr.hospital.patient</field>
             <field name="arch" type="xml">
-                <search string="Search Patient">
+                <search>
                     <field name="name" string="Patient Name" filter_domain="['|', ('name', 'ilike', self), ('phone', 'ilike', self)]"/>
                     <field name="phone"/>
                     <field name="personal_doctor_id"/>
                     <separator/>
                     <filter string="Male" name="male" domain="[('gender', '=', 'male')]"/>
                     <filter string="Female" name="female" domain="[('gender', '=', 'female')]"/>
-                    <group expand="0" string="Group By">
+                    <group>
                         <filter string="Doctor" name="group_by_doctor" context="{'group_by': 'personal_doctor_id'}"/>
                         <filter string="Blood Group" name="group_by_blood" context="{'group_by': 'blood_group'}"/>
                     </group>
                 </search>
+            </field>
+        </record>
+
+        <record id="action_hr_hospital_patient" model="ir.actions.act_window">
+            <field name="name">Patients</field>
+            <field name="res_model">hr.hospital.patient</field>
+            <field name="view_mode">list,kanban,form</field>
+            <field name="search_view_id" ref="view_hr_hospital_patient_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Register your first patient
+                </p>
             </field>
         </record>
     </data>

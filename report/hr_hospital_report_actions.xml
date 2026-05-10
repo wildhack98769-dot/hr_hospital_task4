@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="action_report_disease_statistics_html" model="ir.actions.report">
+        <field name="name">Disease Statistics Report (Preview)</field>
+        <field name="model">hr.hospital.visit</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">hr_hospital.hr_hospital_disease_report_template</field>
+        <field name="report_file">hr_hospital.hr_hospital_disease_report_template</field>
+    </record>
+
     <record id="action_report_disease_statistics" model="ir.actions.report">
         <field name="name">Disease Statistics Report</field>
         <field name="model">hr.hospital.visit</field>

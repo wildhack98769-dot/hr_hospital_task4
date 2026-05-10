@@ -5,7 +5,7 @@
             <field name="name">visit.report.wizard.form</field>
             <field name="model">visit.report.wizard</field>
             <field name="arch" type="xml">
-                <form string="Параметри звіту">
+                <form string="Report Parameters">
                     <field name="name" invisible="1"/>
                     <group>
                         <group>
@@ -20,15 +20,15 @@
                         </group>
                     </group>
                     <footer>
-                        <button name="action_generate_report" string="Сформувати" type="object" class="btn-primary"/>
-                        <button string="Скасувати" class="btn-secondary" special="cancel"/>
+                        <button name="action_generate_report" string="Generate" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
                     </footer>
                 </form>
             </field>
         </record>
 
         <record id="action_visit_report_wizard" model="ir.actions.act_window">
-            <field name="name">Звіт по візитах</field>
+            <field name="name">Visit Report</field>
             <field name="res_model">visit.report.wizard</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>
@@ -36,7 +36,7 @@
         </record>
 
         <record id="bind_visit_report_patient" model="ir.actions.act_window">
-            <field name="name">Звіт по візитах</field>
+            <field name="name">Visit Report</field>
             <field name="res_model">visit.report.wizard</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>
@@ -45,7 +45,7 @@
         </record>
 
         <record id="bind_visit_report_doctor" model="ir.actions.act_window">
-            <field name="name">Звіт по візитах</field>
+            <field name="name">Visit Report</field>
             <field name="res_model">visit.report.wizard</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>

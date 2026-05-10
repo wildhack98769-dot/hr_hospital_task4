@@ -79,6 +79,8 @@ class HospitalVisit(models.Model):
 
     def unlink(self):
         """Override unlink method to prevent deleting completed visits."""
+        if self.env.context.get('_force_unlink'):
+            return super().unlink()
         for rec in self:
             if rec.state == 'done':
                 raise ValidationError(_('You cannot delete a completed visit.'))

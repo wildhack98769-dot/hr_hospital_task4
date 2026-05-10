@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
-        <!-- Категорії -->
         <record id="doctor_category_intern" model="hr.hospital.doctor.category">
             <field name="name">Intern</field>
             <field name="is_intern_category" eval="True"/>
@@ -12,22 +11,26 @@
             <field name="is_intern_category" eval="False"/>
         </record>
 
-        <!-- Ментор: Грегорі Хаус -->
         <record id="doctor_mentor_gregory_house" model="hr.hospital.doctor">
             <field name="name">Dr. Gregory House</field>
             <field name="specialization">Diagnostic Medicine</field>
             <field name="category_id" ref="doctor_category_general_practitioner"/>
+            <field name="date_of_birth">1959-06-11</field>
+            <field name="blood_group">0</field>
+            <field name="rh_factor">plus</field>
             <field name="phone">+1234567890</field>
             <field name="email">gregory.house@hospital.com</field>
             <field name="gender">male</field>
             <field name="photo" type="base64" file="hr_hospital/static/img/demo/House.jpg"/>
         </record>
 
-        <!-- Інтерн: Еллісон Кемерон -->
         <record id="doctor_intern_allison_cameron" model="hr.hospital.doctor">
             <field name="name">Dr. Allison Cameron</field>
             <field name="specialization">Immunology</field>
             <field name="category_id" ref="doctor_category_intern"/>
+            <field name="date_of_birth">1981-03-21</field>
+            <field name="blood_group">A</field>
+            <field name="rh_factor">plus</field>
             <field name="phone">+1122334455</field>
             <field name="email">allison.cameron@hospital.com</field>
             <field name="gender">female</field>
@@ -35,11 +38,13 @@
             <field name="photo" type="base64" file="hr_hospital/static/img/demo/Cameron.jpeg"/>
         </record>
 
-        <!-- Інтерн: Роберт Чейз -->
         <record id="doctor_intern_robert_chase" model="hr.hospital.doctor">
             <field name="name">Dr. Robert Chase</field>
             <field name="specialization">Surgery</field>
             <field name="category_id" ref="doctor_category_intern"/>
+            <field name="date_of_birth">1978-02-18</field>
+            <field name="blood_group">B</field>
+            <field name="rh_factor">plus</field>
             <field name="phone">+9988776655</field>
             <field name="email">robert.chase@hospital.com</field>
             <field name="gender">male</field>
@@ -47,44 +52,52 @@
             <field name="photo" type="base64" file="hr_hospital/static/img/demo/Chase.jpeg"/>
         </record>
 
-        <!-- Ліза Кадді -->
         <record id="doctor_cuddy" model="hr.hospital.doctor">
             <field name="name">Dr. Lisa Cuddy</field>
             <field name="specialization">Endocrinology</field>
             <field name="category_id" ref="doctor_category_general_practitioner"/>
+            <field name="date_of_birth">1967-01-01</field>
+            <field name="blood_group">A</field>
+            <field name="rh_factor">minus</field>
             <field name="phone">+1112223333</field>
             <field name="email">lisa.cuddy@hospital.com</field>
             <field name="gender">female</field>
             <field name="photo" type="base64" file="hr_hospital/static/img/demo/Cuddy.webp"/>
         </record>
 
-        <!-- Джеймс Вілсон -->
         <record id="doctor_wilson" model="hr.hospital.doctor">
             <field name="name">Dr. James Wilson</field>
             <field name="specialization">Oncology</field>
             <field name="category_id" ref="doctor_category_general_practitioner"/>
+            <field name="date_of_birth">1970-02-28</field>
+            <field name="blood_group">AB</field>
+            <field name="rh_factor">plus</field>
             <field name="phone">+4445556666</field>
             <field name="email">james.wilson@hospital.com</field>
             <field name="gender">male</field>
             <field name="photo" type="base64" file="hr_hospital/static/img/demo/Wilson.jpg"/>
         </record>
 
-        <!-- Ерік Форман -->
         <record id="doctor_foreman" model="hr.hospital.doctor">
             <field name="name">Dr. Eric Foreman</field>
             <field name="specialization">Neurology</field>
             <field name="category_id" ref="doctor_category_general_practitioner"/>
+            <field name="date_of_birth">1973-07-15</field>
+            <field name="blood_group">0</field>
+            <field name="rh_factor">minus</field>
             <field name="phone">+7778889999</field>
             <field name="email">eric.foreman@hospital.com</field>
             <field name="gender">male</field>
             <field name="photo" type="base64" file="hr_hospital/static/img/demo/Foreman.webp"/>
         </record>
 
-        <!-- Ремі Хадлі (Тринадцята) -->
         <record id="doctor_intern_remy_hadley" model="hr.hospital.doctor">
             <field name="name">Dr. Remy Hadley</field>
             <field name="specialization">Internal Medicine</field>
             <field name="category_id" ref="doctor_category_intern"/>
+            <field name="date_of_birth">1984-09-22</field>
+            <field name="blood_group">AB</field>
+            <field name="rh_factor">plus</field>
             <field name="phone">+1555000101</field>
             <field name="email">remy.hadley@hospital.com</field>
             <field name="gender">female</field>
@@ -92,16 +105,47 @@
             <field name="photo" type="base64" file="hr_hospital/static/img/demo/Hadley.webp"/>
         </record>
 
-        <!-- Кріс Тауб -->
         <record id="doctor_intern_chris_taub" model="hr.hospital.doctor">
             <field name="name">Dr. Chris Taub</field>
             <field name="specialization">Plastic Surgery</field>
             <field name="category_id" ref="doctor_category_intern"/>
+            <field name="date_of_birth">1971-04-06</field>
+            <field name="blood_group">B</field>
+            <field name="rh_factor">plus</field>
             <field name="phone">+1555000102</field>
             <field name="email">chris.taub@hospital.com</field>
             <field name="gender">male</field>
             <field name="mentor_id" ref="doctor_foreman"/>
             <field name="photo" type="base64" file="hr_hospital/static/img/demo/Taub.jpg"/>
         </record>
+
+        <record id="doctor_intern_new_1" model="hr.hospital.doctor">
+            <field name="name">Dr. John Doe</field>
+            <field name="specialization">General Practice</field>
+            <field name="category_id" ref="doctor_category_intern"/>
+            <field name="date_of_birth">1996-08-09</field>
+            <field name="blood_group">A</field>
+            <field name="rh_factor">plus</field>
+            <field name="phone">+1555111222</field>
+            <field name="email">john.doe@hospital.com</field>
+            <field name="gender">male</field>
+            <field name="mentor_id" ref="doctor_mentor_gregory_house"/>
+            <field name="photo" type="base64" file="hr_hospital/static/img/demo/House.jpg"/>
+        </record>
+
+        <record id="doctor_intern_new_2" model="hr.hospital.doctor">
+            <field name="name">Dr. Jane Smith</field>
+            <field name="specialization">Pediatrics</field>
+            <field name="category_id" ref="doctor_category_intern"/>
+            <field name="date_of_birth">1994-12-03</field>
+            <field name="blood_group">0</field>
+            <field name="rh_factor">plus</field>
+            <field name="phone">+1555333444</field>
+            <field name="email">jane.smith@hospital.com</field>
+            <field name="gender">female</field>
+            <field name="mentor_id" ref="doctor_cuddy"/>
+            <field name="photo" type="base64" file="hr_hospital/static/img/demo/Cameron.jpeg"/>
+        </record>
+
     </data>
 </odoo>

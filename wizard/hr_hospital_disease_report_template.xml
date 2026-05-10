@@ -15,11 +15,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <t t-foreach="docs.sorted(key=lambda v: v.disease_id.name or '')" t-as="visit">
+                            <t t-foreach="docs" t-as="visit">
                                 <tr>
-                                    <td><span t-field="visit.disease_id.name"/></td>
-                                    <td><span t-field="visit.patient_id.name"/></td>
-                                    <td><span t-field="visit.doctor_id.name"/></td>
+                                    <td><span t-field="visit.disease_id"/></td>
+                                    <td><span t-field="visit.patient_id"/></td>
+                                    <td><span t-field="visit.doctor_id"/></td>
                                     <td><span t-field="visit.planned_date"/></td>
                                 </tr>
                             </t>

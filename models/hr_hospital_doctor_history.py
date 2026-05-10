@@ -2,8 +2,6 @@ from odoo import _, api, fields, models
 
 
 class HospitalDoctorHistory(models.Model):
-    """Модель Історія персональних лікарів."""
-
     _name = 'hr.hospital.doctor.history'
     _description = 'Doctor Appointment History'
 
@@ -32,7 +30,7 @@ class HospitalDoctorHistory(models.Model):
                 return {
                     'warning': {
                         'title': _('Date Error'),
-                        'message': _('Дата зміни лікаря не може бути раніше ніж дата призначення'),
+                        'message': _('The doctor change date cannot be earlier than the appointment date.'),
                     }
                 }
         return None

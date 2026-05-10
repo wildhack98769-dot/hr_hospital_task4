@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="0">
+    <data noupdate="1">
 
         <record id="visit_1" model="hr.hospital.visit">
             <field name="patient_id" ref="patient_1"/>
             <field name="doctor_id" ref="doctor_mentor_gregory_house"/>
-            <field name="disease_id" ref="disease_flu"/> <field name="planned_date" eval="(datetime.now() + relativedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="disease_id" ref="disease_flu"/>
+            <field name="planned_date" eval="(datetime.now() + relativedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
             <field name="state">planned</field>
         </record>
 
@@ -15,7 +16,8 @@
             <field name="disease_id" ref="disease_migraine"/>
             <field name="planned_date" eval="(datetime.now() - relativedelta(days=2)).strftime('%Y-%m-%d %H:%M:%S')"/>
             <field name="state">done</field>
-            <field name="summary">Seasonal allergy affecting breathing.</field>
+            <field name="actual_date" eval="(datetime.now() - relativedelta(days=2, hours=-1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="summary">&lt;p&gt;Symptoms improved after treatment.&lt;/p&gt;</field>
         </record>
 
         <record id="visit_5" model="hr.hospital.visit">
@@ -49,7 +51,8 @@
         <record id="visit_8" model="hr.hospital.visit">
             <field name="patient_id" ref="patient_2"/>
             <field name="doctor_id" ref="doctor_intern_allison_cameron"/>
-            <field name="disease_id" ref="disease_asthma"/> <field name="planned_date" eval="(datetime.now() - relativedelta(months=2, days=3)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="disease_id" ref="disease_asthma"/>
+            <field name="planned_date" eval="(datetime.now() - relativedelta(months=2, days=3)).strftime('%Y-%m-%d %H:%M:%S')"/>
             <field name="state">planned</field>
         </record>
 
@@ -75,6 +78,60 @@
             <field name="disease_id" ref="disease_flu"/>
             <field name="planned_date" eval="(datetime.now() + relativedelta(days=16)).strftime('%Y-%m-%d %H:%M:%S')"/>
             <field name="state">planned</field>
+        </record>
+
+        <record id="visit_12" model="hr.hospital.visit">
+            <field name="patient_id" ref="patient_1"/>
+            <field name="doctor_id" ref="doctor_wilson"/>
+            <field name="disease_id" ref="disease_migraine"/>
+            <field name="planned_date" eval="(datetime.now() - relativedelta(months=1, days=5)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="state">done</field>
+            <field name="actual_date" eval="(datetime.now() - relativedelta(months=1, days=5, hours=-2)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="summary">&lt;p&gt;Patient reported significant improvement after medication.&lt;/p&gt;</field>
+        </record>
+
+        <record id="visit_13" model="hr.hospital.visit">
+            <field name="patient_id" ref="patient_2"/>
+            <field name="doctor_id" ref="doctor_foreman"/>
+            <field name="disease_id" ref="disease_gastritis"/>
+            <field name="planned_date" eval="(datetime.now() + relativedelta(days=10)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="state">planned</field>
+        </record>
+
+        <record id="visit_14" model="hr.hospital.visit">
+            <field name="patient_id" ref="patient_3"/>
+            <field name="doctor_id" ref="doctor_intern_allison_cameron"/>
+            <field name="disease_id" ref="disease_covid"/>
+            <field name="planned_date" eval="(datetime.now() - relativedelta(months=2, days=15)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="state">cancelled</field>
+        </record>
+
+        <record id="visit_15" model="hr.hospital.visit">
+            <field name="patient_id" ref="patient_4"/>
+            <field name="doctor_id" ref="doctor_intern_robert_chase"/>
+            <field name="disease_id" ref="disease_pneumonia"/>
+            <field name="planned_date" eval="(datetime.now() - relativedelta(months=3, days=20)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="state">done</field>
+            <field name="actual_date" eval="(datetime.now() - relativedelta(months=3, days=20, hours=-1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="summary">&lt;p&gt;Full recovery after antibiotic treatment.&lt;/p&gt;</field>
+        </record>
+
+        <record id="visit_16" model="hr.hospital.visit">
+            <field name="patient_id" ref="patient_1"/>
+            <field name="doctor_id" ref="doctor_cuddy"/>
+            <field name="disease_id" ref="disease_asthma"/>
+            <field name="planned_date" eval="(datetime.now() + relativedelta(days=20)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="state">planned</field>
+        </record>
+
+        <record id="visit_17" model="hr.hospital.visit">
+            <field name="patient_id" ref="patient_2"/>
+            <field name="doctor_id" ref="doctor_mentor_gregory_house"/>
+            <field name="disease_id" ref="disease_flu"/>
+            <field name="planned_date" eval="(datetime.now() - relativedelta(months=4, days=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="state">done</field>
+            <field name="actual_date" eval="(datetime.now() - relativedelta(months=4, days=1, hours=-1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="summary">&lt;p&gt;Routine check-up, no new symptoms.&lt;/p&gt;</field>
         </record>
 
     </data>

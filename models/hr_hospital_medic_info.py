@@ -4,8 +4,6 @@ from odoo import api, fields, models
 
 
 class HospitalMedicInfo(models.AbstractModel):
-    """Абстрактна модель для спільних даних."""
-
     _name = 'hr.hospital.medic.info'
     _description = 'Medical Information Abstract'
 
@@ -29,7 +27,8 @@ class HospitalMedicInfo(models.AbstractModel):
 
     phone = fields.Char(string='Phone')
     email = fields.Char(string='Email')
-    photo = fields.Binary(string='Photo')
+    photo = fields.Image(string='Photo')
+    avatar_128 = fields.Image(related='photo', max_width=128, max_height=128)
     gender = fields.Selection(
         [('male', 'Male'), ('female', 'Female'), ('other', 'Other')],
         string='Gender',

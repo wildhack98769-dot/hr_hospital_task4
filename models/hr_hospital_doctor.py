@@ -3,8 +3,6 @@ from odoo.exceptions import ValidationError
 
 
 class HospitalDoctor(models.Model):
-    """Hospital Doctor personnel records."""
-
     _name = 'hr.hospital.doctor'
     _description = 'Hospital Doctor'
 
@@ -12,7 +10,6 @@ class HospitalDoctor(models.Model):
 
     name = fields.Char(string='Full Name', required=True)
     specialization = fields.Char(string='Specialization')
-    photo = fields.Binary(string='Photo')
 
     category_id = fields.Many2one(
         comodel_name='hr.hospital.doctor.category',
@@ -46,13 +43,11 @@ class HospitalDoctor(models.Model):
 
     @api.depends('category_id')
     def _compute_is_intern(self):
-        """Визначаємо статус інтерна на основі зовнішнього ID категорії."""
         for rec in self:
             rec.is_intern = rec.category_id.is_intern_category if rec.category_id else False
 
     @api.constrains('mentor_id', 'is_intern')
     def _check_mentor_intern_status(self):
-        """Перевірка обмежень для менторів та інтернів."""
         for rec in self:
             if rec.is_intern:
                 if rec.mentor_id:

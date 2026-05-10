@@ -31,14 +31,14 @@
             <field name="name">hr.hospital.doctor.category.kanban</field>
             <field name="model">hr.hospital.doctor.category</field>
             <field name="arch" type="xml">
-                <kanban class="o_kanban_mobile" sample="1">
-                    <field name="name"/>
-                    <templates>
-                        <t t-name="kanban-box">
-                            <div t-attf-class="oe_kanban_global_click shadow-sm border-0 rounded p-3">
-                                <div class="d-flex align-items-center">
-                                    <div class="rounded-circle bg-primary-light p-2 me-3 text-primary">
-                                        <i class="fa fa-graduation-cap fa-lg"/>
+	                <kanban class="o_kanban_mobile" sample="1">
+	                    <field name="name"/>
+	                    <templates>
+	                        <t t-name="card">
+	                            <div t-attf-class="oe_kanban_global_click shadow-sm border-0 rounded p-3">
+	                                <div class="d-flex align-items-center">
+	                                    <div class="rounded-circle bg-primary-light p-2 me-3 text-primary">
+	                                        <i class="fa fa-graduation-cap fa-lg"/>
                                     </div>
                                     <strong class="o_kanban_record_title" style="font-size: 1.1em;">
                                         <field name="name"/>
